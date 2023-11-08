@@ -1,4 +1,4 @@
-var redis = require('redis');
+var redis = require('ioredis');
 var events = require('events');
 
 module.exports = function(options) {
@@ -12,7 +12,7 @@ module.exports = function(options) {
 	var sub = options.sub;
 
 	if (!options.pub) {
-		if (options.auth) options.auth_pass = options.auth;
+		if (options.auth) options.auth_pass = options.password = options.auth;
 
 		pub = redis.createClient(options);
 		sub = redis.createClient(options);
